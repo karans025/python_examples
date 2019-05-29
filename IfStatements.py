@@ -12,8 +12,10 @@ if none_variable:
 if integer == -2:
     print("This will Execute")
     print("Python doesn't need curly braces, Only Indentation is enough to block a code")
+elif integer == 2:
+    print("This is an else if block code in python")
 else:
-    print("this Won't execute")
+    print("This won't execute")
 if integer and string:
     print("Using \"and\" in an If statement")
 if integer or string:
