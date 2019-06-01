@@ -12,8 +12,8 @@ def print_student_titlecase():
     student_titlecase = get_students_titlecase()
     print(student_titlecase)
 
-
-def add_student(name, student_id = 332): #Default Argument (student_id), will take this value, if not provided during the call
+#Default Argument (student_id), will take this value, if not provided during the call
+def add_student(name, student_id = 332): 
     student = {"name": name, "student_id": student_id}
     students.append(student)
 
@@ -63,3 +63,18 @@ while True:
 var_args("Mark", "Something", "Another Argument", 12 , None, True)
 
 var_kwargs("Mark", description = "Loves Python", feedback = None, pluralsight_subscriber =  True)
+
+# Lambda Expressions
+# map function maps (applies) the function (or a lambda expression) passed, to an iterable Object
+# and returns iterable object itself
+print(list(map(lambda num: num ** 2, [1,2,3,4,5,6])))
+# def square(num):
+#    return num ** 2
+# This function transforms to the lambda expression above
+
+# filter function filters the elements from an iterable Object according the function (or lambda expression)
+# and returns iterable object itself, filter function requires a True or False return type
+print(list(filter(lambda num: num % 2 == 0, [1,2,3,4,5,6])))
+# def check_even(num):
+#    return num % 2 == 0
+# This function transforms to the lambda expression above

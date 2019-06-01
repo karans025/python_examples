@@ -44,6 +44,8 @@ d = ((1,2,4), 2, 'eureka!!!!') # Tupple can contain anything, another tupple, a 
 print(c)
 print(d)
 e = [1,2,2,5] # List, mutable object, value can be changed, will demonstrate later
+print(min(e))
+print(max(e))
 f = [(1,4,2),[2,4,6,'this is a string'],'this is also a string',False] #Like a tupple, a list can also contain anything
 print(e[-1]) # Starts indexing from backwards (last element is -1 indexed)
 e.append(6) # Adding an element to a list
