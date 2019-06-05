@@ -8,7 +8,8 @@ def print_intro():
     print("1. Player 1 plays with 'o' and player 2 plays with 'x'")
     print("2. First player to get either 3 'o' or 3 'x' in a row, column or diagonal wins")
     print("3. When Prompted, enter the position you want to place the element (numbers on the num pad describe the location)")
-    print("4. Let's start\n\n")
+    #print("4. Enter in 'q' or 'quit' at any time to exit")
+    print("\n\nLet's start\n\n")
     return [player_1, player_2]
 
 
@@ -48,8 +49,7 @@ def check_win(player_moves):
     return False
 
 
-def tic_tac_toe():
-    player_list = print_intro()
+def tic_tac_toe(player_list):
     win = False
     board = []
     while not win and len(board) < 9:
@@ -72,7 +72,18 @@ def tic_tac_toe():
                 break
             print_board(board, player_list)
             win = check_win(player['moves'])
-            if win or len(board) >= 9:
+            if win:
+                print(f"Winner: {player['name']}")
+                break
+            if len(board) >= 9:
+                print("This Match was a Draw.")
                 break
 
-tic_tac_toe()
+player_list = print_intro()
+while True:
+    tic_tac_toe(player_list)
+    new_game = input("Want another game? ")
+    if(new_game.lower() == 'n' or new_game.lower() == 'no'):
+        break
+    for player in player_list:
+        player['moves'] = []
