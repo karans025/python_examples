@@ -8,7 +8,7 @@ def print_intro():
     print("1. Player 1 plays with 'o' and player 2 plays with 'x'")
     print("2. First player to get either 3 'o' or 3 'x' in a row, column or diagonal wins")
     print("3. When Prompted, enter the position you want to place the element (numbers on the num pad describe the location)")
-    #print("4. Enter in 'q' or 'quit' at any time to exit")
+    print("4. Enter in 'q' or 'quit' at any time to exit")
     print("\n\nLet's start\n\n")
     return [player_1, player_2]
 
@@ -51,14 +51,16 @@ def check_win(player_moves):
 
 def tic_tac_toe(player_list):
     win = False
+    quit = False
     board = []
-    while not win and len(board) < 9:
+    while not win and not quit and len(board) < 9:
         for player in player_list:
             player_name = player['name']
             if player_name == player_list[0]['name'] and len(player['moves']) > len(player_list[1]['moves']):
                 continue
             try:
-                move = int(input(f'{player_name}, Enter your Move: '))
+                move = input(f'{player_name}, Enter your Move: ')
+                move = int(move)
                 if move < 1 or move > 9:
                     print('Please Enter a value between 1 and 9')
                     break
@@ -68,6 +70,9 @@ def tic_tac_toe(player_list):
                 board.append(move)
                 player['moves'].append(move)
             except:
+                if move.lower() == "q" or move.lower == "quit":
+                    quit = True
+                    break
                 print('Please enter a valid numeric value')
                 break
             print_board(board, player_list)
@@ -77,13 +82,18 @@ def tic_tac_toe(player_list):
                 break
             if len(board) >= 9:
                 print("This Match was a Draw.")
+                player_list.reverse()
                 break
 
 player_list = print_intro()
+tic_tac_toe(player_list)
 while True:
-    tic_tac_toe(player_list)
     new_game = input("Want another game? ")
-    if(new_game.lower() == 'n' or new_game.lower() == 'no'):
+    if new_game.lower() == 'n' or new_game.lower() == 'no':
         break
-    for player in player_list:
-        player['moves'] = []
+    elif new_game.lower() == 'y' or new_game.lower() =='yes':
+        for player in player_list:
+            player['moves'] = []
+        tic_tac_toe(player_list)
+    else:
+        print("Invalid Input")
